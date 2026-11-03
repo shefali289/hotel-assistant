@@ -6,7 +6,7 @@ The repo has three parts: a FastAPI service in `api/` that serves `POST /recomme
 
 ## Submitted branch and commit
 - **Branch:** `main`
-- **Commit:** filled in after the T4 merge, by the owner-approved final commit on `main`
+- **Commit:** `63ee0c6` (merge: T4 Evidence and documentation). A later docs-only commit on `main` records this hash; it changes no code.
 
 ## Runtime versions
 Read on the development machine (Windows 11) from the commands shown.

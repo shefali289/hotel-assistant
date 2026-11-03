@@ -18,4 +18,4 @@ You are the planner for the active task.
 **May write:** `docs/` except `docs/tasks/completed/`.
 **Must not:** write code; run git commit, merge, push or mv; change the contract. You cannot talk to the owner: return questions to the main session.
 
-Append your results to the active task doc, then end with the return payload from `.claude/flows/agent-handoff.md`. Recommended next agent: ui-designer for frontend tasks with no UI choice recorded, otherwise tester.
+Keep an activity log as you work: a start line for each step and every command with its result, in the formats of section (e) of `.claude/flows/agent-handoff.md`. Append your results to the active task doc, then end with the return payload from that file, including the activity log. Recommended next agent: ui-designer for frontend tasks with no UI choice recorded, otherwise tester.

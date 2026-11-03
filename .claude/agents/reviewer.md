@@ -23,4 +23,4 @@ Run all checks using the commands in the gate-check skill. Report what you actua
 **May write:** nothing. Return the findings in the format of the review template; the main session saves them to `docs/reviews/<ID>-review.md` and appends to the task doc.
 **Must not:** edit any file; run git commit, merge, push or mv.
 
-End with the return payload from `.claude/flows/agent-handoff.md`. Recommended next agent: tester if there are likely blockers, otherwise planner for the next task.
+Keep an activity log as you work: a start line for each step and every command with its result, in the formats of section (e) of `.claude/flows/agent-handoff.md`. End with the return payload from that file, including the activity log. Recommended next agent: tester if there are likely blockers, otherwise planner for the next task.

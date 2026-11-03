@@ -23,8 +23,10 @@ Loops:
 
 ## (b) Agent return payload
 ```
+Agent: <name>
 Status: done | blocked | needs-clarification
 Summary: ≤3 bullets
+Activity log: every step and command, in order, in the formats of section (e)
 Files changed:
 Tests run: command, passed, failed
 Comment standard applied: yes/no + notes
@@ -36,6 +38,8 @@ Recommended next agent:
 ```
 ---
 <ID> · <phase> complete · Gate <Gx>: PASS/FAIL (report: docs/gates/<ID>-G<x>.md)
+Agents run: <agent: one-line result, for each agent in this phase>
+Commands run: <each command → result, main session and agents, in order>
 Done: <1–3 bullets>   Tests: <passed> passed / <failed> failed
 Commit: <hash> <message>   Pushed: <branch/main or not yet>
 Task doc: <path>   Open clarifications: <n or none>
@@ -51,3 +55,27 @@ Update the task doc and `CURRENT_TASK.md`, print the block, then wait for the ow
 - **no:** stop. `CURRENT_TASK.md` shows the next command.
 - **change:** record it in Decisions & deviations, adjust, and ask again.
 - **Gate FAIL:** no handoff. Show the failing items and fix options, and ask the owner to fix or waive.
+
+## (e) Visibility
+Required by `.claude/rules/visibility.md`. The main session prints these as work happens; subagents write the same lines into their activity log.
+
+**Start line**, before every step, gate or agent:
+```
+▶ <ID> · <phase> · <agent or main session> · step <n>: <what it is doing>
+```
+
+**Command line**, for every command:
+```
+$ <exact command>
+  → <exit code>, <one-line result, e.g. "12 passed, 0 failed">
+```
+On failure, also show the relevant output lines.
+
+**Agent start**, before running a subagent:
+```
+▶ Starting <agent> (<phase>): <what it will do> · skills: <skills> · may write: <paths>
+```
+
+**Agent return**, after a subagent finishes: print its Agent, Status and full Activity log, then continue.
+
+Subagent tool calls are not shown live in every client, so the returned activity log is the record the owner relies on. It must list every command the agent ran, including failed ones.

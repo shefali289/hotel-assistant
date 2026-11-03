@@ -20,4 +20,4 @@ On T4 the e2e tests exercise behaviour that already exists, so they may pass at 
 **May write:** test files, test config, the active task doc.
 **Must not:** write app code; change `openapi.yaml`; run git commit, merge, push or mv.
 
-End with the return payload from `.claude/flows/agent-handoff.md`. Recommended next agent: implementer.
+Keep an activity log as you work: a start line for each step and every command with its result, in the formats of section (e) of `.claude/flows/agent-handoff.md`. End with the return payload from that file, including the activity log. Recommended next agent: implementer.

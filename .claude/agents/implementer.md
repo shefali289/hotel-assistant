@@ -24,4 +24,4 @@ On T4 your work is the README, the APPROACH draft and the evidence files. Do not
 **May write:** app code, the active task doc.
 **Must not:** edit tests or `openapi.yaml`; add a dependency the owner has not approved; run git commit, merge, push or mv.
 
-End with the return payload from `.claude/flows/agent-handoff.md`. Recommended next agent: reviewer.
+Keep an activity log as you work: a start line for each step and every command with its result, in the formats of section (e) of `.claude/flows/agent-handoff.md`. End with the return payload from that file, including the activity log. Recommended next agent: reviewer.

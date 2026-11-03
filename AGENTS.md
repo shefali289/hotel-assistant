@@ -66,7 +66,7 @@ openapi.yaml                     API contract (committed before any code)
 .claude/
   settings.json                  deny reading .env files; ask before push/merge
   rules/                         ALWAYS-ON (auto-loaded as project memory)
-    tdd.md  branching.md  gates.md  code-quality.md  contract-and-secrets.md
+    tdd.md  branching.md  gates.md  code-quality.md  contract-and-secrets.md  visibility.md
   skills/                        ON DEMAND by description; agents are also told which to use
     web-testing/SKILL.md  api-testing/SKILL.md  accessible-ui/SKILL.md
     code-comments/SKILL.md  gate-check/SKILL.md
@@ -89,7 +89,7 @@ docs/
 
 ## Workflow
 1. Commands: `/task-plan <ID>`, `/task-test`, `/task-implement`, `/task-review`, `/task-gate <G0–G5>`, `/task-status`.
-2. Handoff: after each phase, print the handoff block from `.claude/flows/agent-handoff.md` and wait for the owner's answer.
+2. Visibility and handoff: show the running agent, each step and every command with its result as work happens (section (e) of `.claude/flows/agent-handoff.md`); after each phase, print the handoff block and wait for the owner's answer.
 3. Gates: G0 to G5 run with the gate-check skill, reports go to `docs/gates/`, and nothing passes without every item passing or an owner waiver.
 4. Skills: web-testing, api-testing, accessible-ui, code-comments, gate-check; each agent lists the ones it uses.
 5. Comment standard: all code and tests follow the code-comments skill (Q8).

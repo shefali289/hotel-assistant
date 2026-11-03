@@ -13,4 +13,4 @@ You are the UI designer for the active frontend task.
 **May write:** the active task doc only.
 **Must not:** write code; run git commit, merge, push or mv; choose for the owner. You cannot talk to the owner: return the options and questions to the main session.
 
-End with the return payload from `.claude/flows/agent-handoff.md`. Recommended next agent: tester.
+Keep an activity log as you work: a start line for each step and every command with its result, in the formats of section (e) of `.claude/flows/agent-handoff.md`. End with the return payload from that file, including the activity log. Recommended next agent: tester.

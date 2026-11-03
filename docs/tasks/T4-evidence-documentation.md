@@ -45,6 +45,8 @@ Acceptance criteria are written by the planner.
 
 **Builds on (completed task docs):** T1, T2, T3.
 
+**Carried in from T1 review (nit 4, owner deferred to T4, 2026-11-03):** README troubleshooting (D1) should say that on networks with a proxy, localhost requests may be intercepted; set `NO_PROXY=localhost,127.0.0.1` or use `curl --noproxy '*'`. See [T1 review](../reviews/T1-review.md).
+
 **New packages and owner approval:** named in the brief; confirm at G1.
 | Package | Why | Approved by owner |
 |---|---|---|

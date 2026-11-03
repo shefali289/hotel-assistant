@@ -1,18 +1,18 @@
 # Current task
 
-- **Active task:** [T1-api-recommendations](T1-api-recommendations.md)
+- **Active task:** [T1-api-recommendations](completed/T1-api-recommendations.md)
 - **Branch:** task/T1-api-recommendations
-- **Phase:** test (next)
+- **Phase:** close
 - **Current agent:** none
-- **Next agent:** tester
-- **Next command:** `/task-test`
-- **Last action:** Plan written and approved; G1 passed; plan committed
-- **Last gate:** G1 PASS ([report](../gates/T1-G1.md))
-- **Last test command + result:** none
-- **Last commit:** see `git log -1` on the task branch (`docs(api): plan T1`)
-- **Last pushed commit:** fd04384 (main)
-- **Next step:** Owner answers the handoff; on yes, the tester writes the 26 failing tests in section 10 of the task doc and runs G2.
+- **Next agent:** owner (runs the close commands)
+- **Next command:** close commands printed by `/task-review`
+- **Last action:** Review done (0 blockers); G4 Part A passed; task doc archived
+- **Last gate:** G4 Part A PASS ([report](../gates/T1-G4.md))
+- **Last test command + result:** `pytest -q -W error` (api/): 45 passed, 0 failed
+- **Last commit:** adfa6bd docs(api): plan T1 (rebased); nothing else is committed until task close
+- **Last pushed commit:** 46337d2 (main)
+- **Next step:** Owner runs the printed close commands (test, feat, docs commits; push branch; merge --no-ff; checks on main; push main). Then G4 Part B and `/task-plan T2`.
 - **Open clarifications:** none
 - **Blockers:** none
-- **Awaiting approval:** yes (handoff to tester)
+- **Awaiting approval:** yes (owner runs the close commands)
 - **Completed tasks:** none

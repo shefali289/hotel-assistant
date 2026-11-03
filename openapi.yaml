@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: Hotel Assistant API
+  version: 1.0.0
+  description: >-
+    Returns hotel recommendations for a traveller's request. All data is fixture
+    data: the API does not interpret the message, call an LLM, or look up live
+    availability. This file is the source of truth; revisions are logged in
+    docs/contract-changes.md.
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+paths:
+  /recommendations:
+    post:
+      operationId: createRecommendations
+      summary: Get hotel recommendations for a traveller's message
+      description: >-
+        Validates the request, then returns the outcome selected by the
+        `scenario` demo control. Only the `success` outcome is delayed, by
+        FIXTURE_DELAY_MS milliseconds (default 800).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendationRequest'
+            examples:
+              wellington:
+                summary: Example traveller request
+                value:
+                  message: Find a Wellington hotel for two nights, up to NZD 250 per night; breakfast preferred.
+                  scenario: success
+      responses:
+        '200':
+          description: Recommendations returned. `hotels` is empty when nothing matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationResponse'
+              examples:
+                success:
+                  summary: The success scenario returns all three fixture hotels
+                  value:
+                    message: Here are three Wellington hotels for your stay.
+                    hotels:
+                      - id: h1
+                        name: Harbour House
+                        nightlyPrice: 220
+                        currency: NZD
+                        breakfastIncluded: true
+                        explanation: Within budget; breakfast included.
+                      - id: h2
+                        name: City Garden
+                        nightlyPrice: 245
+                        currency: NZD
+                        breakfastIncluded: true
+                        explanation: Near the meeting district.
+                      - id: h3
+                        name: Quay Rooms
+                        nightlyPrice: 195
+                        currency: NZD
+                        breakfastIncluded: false
+                        explanation: Lower price; breakfast costs extra.
+                    source: fixture
+                empty:
+                  summary: The empty scenario returns no hotels
+                  value:
+                    message: No hotels matched your request.
+                    hotels: []
+                    source: fixture
+        '422':
+          description: The request failed validation. Uses FastAPI's default error shape.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+              examples:
+                blankMessage:
+                  summary: The message contains only whitespace
+                  value:
+                    detail:
+                      - loc: [body, message]
+                        msg: String should match pattern '\S'
+                        type: string_pattern_mismatch
+        '503':
+          description: The error scenario was requested. The failure is recoverable, so the client may retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+              examples:
+                unavailable:
+                  summary: User-safe failure message
+                  value:
+                    detail: Recommendations are temporarily unavailable. Please try again.
+components:
+  schemas:
+    RecommendationRequest:
+      type: object
+      description: A traveller's request and the demo outcome to return.
+      required: [message, scenario]
+      properties:
+        message:
+          type: string
+          description: The traveller's request. Must contain a non-whitespace character and at most 1000 characters.
+          minLength: 1
+          maxLength: 1000
+          pattern: '\S'
+        scenario:
+          type: string
+          description: Demo control that selects the outcome. It is required, has no default, and is not a traveller preference.
+          enum: [success, empty, error]
+    RecommendationResponse:
+      type: object
+      description: The assistant's reply and its recommended hotels.
+      additionalProperties: false
+      required: [message, hotels, source]
+      properties:
+        message:
+          type: string
+          description: The assistant's message to the traveller.
+        hotels:
+          type: array
+          description: Recommended hotels. Three in the success scenario, none in the empty scenario.
+          items:
+            $ref: '#/components/schemas/Hotel'
+        source:
+          type: string
+          description: Labels the response as fixture data rather than live results.
+          enum: [fixture]
+    Hotel:
+      type: object
+      description: A recommended hotel.
+      additionalProperties: false
+      required: [id, name, nightlyPrice, currency, breakfastIncluded, explanation]
+      properties:
+        id:
+          type: string
+          description: Stable identifier for the hotel.
+        name:
+          type: string
+          description: Hotel name shown to the traveller.
+        nightlyPrice:
+          type: number
+          description: Price per night in `currency`.
+          minimum: 0
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+        breakfastIncluded:
+          type: boolean
+          description: Whether breakfast is included in the nightly price.
+        explanation:
+          type: string
+          description: Short reason the assistant recommends this hotel.
+    HTTPValidationError:
+      type: object
+      description: FastAPI's default validation error body. Extra keys such as `input` and `ctx` may appear on each item.
+      required: [detail]
+      properties:
+        detail:
+          type: array
+          description: One entry per validation failure.
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      description: A single validation failure.
+      required: [loc, msg, type]
+      properties:
+        loc:
+          type: array
+          description: Path to the invalid value, for example ["body", "message"].
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+        msg:
+          type: string
+          description: Human-readable description of the failure.
+        type:
+          type: string
+          description: Machine-readable failure type.
+    ServiceUnavailable:
+      type: object
+      description: A recoverable failure with a message that is safe to show the traveller.
+      additionalProperties: false
+      required: [detail]
+      properties:
+        detail:
+          type: string
+          description: User-safe failure message.

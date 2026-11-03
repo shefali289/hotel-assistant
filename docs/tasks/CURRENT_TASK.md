@@ -1,18 +1,18 @@
 # Current task
 
-- **Active task:** [T1-api-recommendations](completed/T1-api-recommendations.md)
-- **Branch:** task/T1-api-recommendations
-- **Phase:** close
+- **Active task:** [T3-web-states-accessibility](T3-web-states-accessibility.md) (not started); T2 closing ([doc](completed/T2-web-core-journey.md))
+- **Branch:** task/T2-web-core-journey
+- **Phase:** close (owner runs the printed close commands)
 - **Current agent:** none
-- **Next agent:** owner (runs the close commands)
-- **Next command:** close commands printed by `/task-review`
-- **Last action:** Review done (0 blockers); G4 Part A passed; task doc archived
-- **Last gate:** G4 Part A PASS ([report](../gates/T1-G4.md))
-- **Last test command + result:** `pytest -q -W error` (api/): 45 passed, 0 failed
-- **Last commit:** adfa6bd docs(api): plan T1 (rebased); nothing else is committed until task close
-- **Last pushed commit:** 46337d2 (main)
-- **Next step:** Owner runs the printed close commands (test, feat, docs commits; push branch; merge --no-ff; checks on main; push main). Then G4 Part B and `/task-plan T2`.
+- **Next agent:** planner (T3) after close
+- **Next command:** owner runs the printed close commands
+- **Last action:** T2 review done (no blockers; nits fixed), G4 Part A passed, task doc archived
+- **Last gate:** T2 G4 Part A PASS ([report](../gates/T2-G4.md))
+- **Last test command + result:** `npm test` (web/): 32 passed, 0 failed; `pytest -q` (api/): 45 passed
+- **Last commit:** 10c2e2b merge: T1 API recommendations
+- **Last pushed commit:** 10c2e2b (main)
+- **Next step:** Owner runs the T2 close commands; then main session writes G4 Part B and records hashes here; then `/task-plan T3`.
 - **Open clarifications:** none
 - **Blockers:** none
-- **Awaiting approval:** yes (owner runs the close commands)
-- **Completed tasks:** none
+- **Awaiting approval:** no
+- **Completed tasks:** T1 ([doc](completed/T1-api-recommendations.md)): plan `adfa6bd`, close `ab6674c`, merge `10c2e2b`, 2026-11-03

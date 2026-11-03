@@ -1,4 +1,4 @@
-// One hotel as a selectable card: radio named by the hotel, with price, breakfast and explanation (U5, U6).
+// One hotel as a selectable card: radio named by the hotel, with price, breakfast and explanation (U5, U6, U9).
 "use client";
 
 import { motion } from "framer-motion";
@@ -52,10 +52,10 @@ export function HotelCard({ hotel, index, checked, onSelect }: HotelCardProps) {
         />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            {/* The label's overlay stretches over the card, so a click anywhere on it selects the hotel. */}
+            {/* The label's overlay stretches over the card, so a click anywhere on it selects the hotel. U9: long names wrap. */}
             <label
               htmlFor={radioId}
-              className="cursor-pointer text-lg font-semibold text-slate-900 after:absolute after:inset-0 after:rounded-2xl"
+              className="min-w-0 cursor-pointer text-lg font-semibold text-slate-900 wrap-anywhere after:absolute after:inset-0 after:rounded-2xl"
             >
               {hotel.name}
             </label>
@@ -76,7 +76,7 @@ export function HotelCard({ hotel, index, checked, onSelect }: HotelCardProps) {
               {hotel.breakfastIncluded ? "Breakfast included" : "Breakfast not included"}
             </span>
           </p>
-          <p id={explanationId} className="mt-2 text-slate-700">
+          <p id={explanationId} className="mt-2 text-slate-700 wrap-anywhere">
             {hotel.explanation}
           </p>
         </div>

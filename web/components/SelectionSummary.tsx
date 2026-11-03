@@ -1,4 +1,4 @@
-// "Your selection" panel naming the chosen hotel, its nightly price and breakfast status (U6).
+// "Your selection" panel naming the chosen hotel, its nightly price and breakfast status (U6, U9).
 "use client";
 
 import { motion } from "framer-motion";
@@ -30,7 +30,8 @@ export function SelectionSummary({ hotel }: SelectionSummaryProps) {
         <CircleCheck aria-hidden="true" className="h-5 w-5" />
         Your selection
       </h2>
-      <p className="mt-3">
+      {/* U9: a long hotel name wraps inside the panel at 375px. */}
+      <p className="mt-3 wrap-anywhere">
         You selected {hotel.name}: {formatPrice(hotel.nightlyPrice, hotel.currency)} per night, breakfast{" "}
         {hotel.breakfastIncluded ? "included" : "not included"}.
       </p>

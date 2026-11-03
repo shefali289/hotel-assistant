@@ -1,0 +1,5 @@
+48aa36a2ea990a1105fd9688a5c7ab81ec9be5a4f211fa48f33f08f5e879dc1f *e2e/package.json
+f281d316ab02c7152ba983292fa7df1869b42e379e49dd0d1c4b1adf6f04b101 *e2e/playwright.config.ts
+6db40a79fde014750b0b8c788e84c6e64dfc524c4ab1693923edefef6487d434 *e2e/tests/failure-retry.spec.ts
+116576a7680c9fc4c3eb1ff391b7cc776b8dc532e09c17c956610a20f7ba70bd *e2e/tests/main-journey.spec.ts
+b203f91c61958b0b7d6431da5e15d6eea4de80b072fbdd85f9c240d757c0c3d8 *e2e/tsconfig.json

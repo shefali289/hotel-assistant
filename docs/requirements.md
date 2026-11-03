@@ -5,16 +5,16 @@ Links point to active task docs and are updated when a doc moves to `tasks/compl
 ## API
 | ID | Requirement | Task | Verified by | Evidence | Status |
 |---|---|---|---|---|---|
-| A1 | Accepts `{message, scenario}` JSON | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A2 | Empty, whitespace-only or too-long message → 422 | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A3 | Missing or invalid scenario → 422 | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A4 | Success → 200, message + exactly the 3 fixtures, after delay | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A5 | Empty → 200, hotels `[]` | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A6 | Error → 503 with useful detail | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A7 | Hotel field names and types (nightlyPrice number, breakfastIncluded boolean) | [T1](tasks/T1-api-recommendations.md) | pytest, contract test | | Not started |
-| A8 | Response labelled as fixture | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
-| A9 | Responses validated against `openapi.yaml` (contract test) | [T1](tasks/T1-api-recommendations.md) | contract test | | Not started |
-| A10 | CORS allows the local web origin | [T1](tasks/T1-api-recommendations.md) | pytest | | Not started |
+| A1 | Accepts `{message, scenario}` JSON | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_validation.py (A1 ×3) | Done |
+| A2 | Empty, whitespace-only or too-long message → 422 | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_validation.py (A2 ×3) | Done |
+| A3 | Missing or invalid scenario → 422 | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_validation.py (A3) | Done |
+| A4 | Success → 200, message + exactly the 3 fixtures, after delay | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_scenarios.py, test_delay.py (A4 ×7) | Done |
+| A5 | Empty → 200, hotels `[]` | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_scenarios.py (A5) | Done |
+| A6 | Error → 503 with useful detail | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_scenarios.py (A6 ×2) | Done |
+| A7 | Hotel field names and types (nightlyPrice number, breakfastIncluded boolean) | [T1](tasks/completed/T1-api-recommendations.md) | pytest, contract test | test_scenarios.py (A7 ×2), test_contract.py | Done |
+| A8 | Response labelled as fixture | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_scenarios.py (A8) | Done |
+| A9 | Responses validated against `openapi.yaml` (contract test) | [T1](tasks/completed/T1-api-recommendations.md) | contract test | test_contract.py (A9 ×3) | Done |
+| A10 | CORS allows the local web origin | [T1](tasks/completed/T1-api-recommendations.md) | pytest | test_cors.py (A10 ×3) | Done |
 
 ## UI
 | ID | Requirement | Task | Verified by | Evidence | Status |
@@ -35,13 +35,13 @@ Links point to active task docs and are updated when a doc moves to `tasks/compl
 | ID | Requirement | Task | Verified by | Evidence | Status |
 |---|---|---|---|---|---|
 | Q1 | Component/state tests with Vitest + RTL | [T2](tasks/T2-web-core-journey.md) (journey), [T3](tasks/T3-web-states-accessibility.md) (states; closes) | Test suite | | Not started |
-| Q2 | API validation + contract tests with pytest | [T1](tasks/T1-api-recommendations.md) | Test suite | | Not started |
+| Q2 | API validation + contract tests with pytest | [T1](tasks/completed/T1-api-recommendations.md) | Test suite | 45 passed, ruff clean ([T1-G3](gates/T1-G3.md)) | Done |
 | Q3 | e2e evidence of main journey | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q4 | e2e evidence of failure → retry recovery | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q5 | Manual keyboard + small-screen checks recorded | [T4](tasks/T4-evidence-documentation.md) | `docs/manual-checks.md` | | Not started |
 | Q6 | Mock boundaries documented | [T3](tasks/T3-web-states-accessibility.md) | Inspection of `APPROACH.md` notes | | Not started |
 | Q7 | Unverified items listed | [T4](tasks/T4-evidence-documentation.md) | Inspection of `APPROACH.md` | | Not started |
-| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/T1-api-recommendations.md), [T2](tasks/T2-web-core-journey.md), [T3](tasks/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | | Not started |
+| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/completed/T1-api-recommendations.md), [T2](tasks/T2-web-core-journey.md), [T3](tasks/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | T1: greps empty, review ([T1-review](reviews/T1-review.md)) | In progress (T1 done; closed by T4) |
 
 ## Docs
 | ID | Requirement | Task | Verified by | Evidence | Status |
@@ -68,7 +68,7 @@ Every ID other than Q8 belongs to exactly one task, with one exception set by th
 ## Task index
 | Task | Status | Doc |
 |---|---|---|
-| T1 | Not started | [T1-api-recommendations](tasks/T1-api-recommendations.md) |
+| T1 | Done (closing) | [T1-api-recommendations](tasks/completed/T1-api-recommendations.md) |
 | T2 | Not started | [T2-web-core-journey](tasks/T2-web-core-journey.md) |
 | T3 | Not started | [T3-web-states-accessibility](tasks/T3-web-states-accessibility.md) |
 | T4 | Not started | [T4-evidence-documentation](tasks/T4-evidence-documentation.md) |

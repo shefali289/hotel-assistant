@@ -1,0 +1,5 @@
+dc96098797f9f71403568c32fff4e5ae18f4be6814d030da8e32ea93f8a3e085 *web/app/page.test.tsx
+5255484b6b0e9b42fe0eff6be52b3f2b25ff00c613d0a758ebdfd7bf3b391b89 *web/lib/recommendations.test.ts
+c743ce8231f931827f6bcfd28c5d2f5a9665661a66ecb68a55328d28a31c2df7 *web/test/mockFetch.ts
+6f898b00d1c71cf3d4c4773dd3b7e17b4b3dddbb0ac71e299915f055f59a4e07 *web/vitest.config.ts
+aa2431e60e2f47b42e26a0e819f54a9de76f88a696ee28019e123332cb4aa527 *web/vitest.setup.ts

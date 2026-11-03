@@ -19,29 +19,29 @@ Links point to active task docs and are updated when a doc moves to `tasks/compl
 ## UI
 | ID | Requirement | Task | Verified by | Evidence | Status |
 |---|---|---|---|---|---|
-| U1 | Labelled message input + submit | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
-| U2 | Labelled scenario demo control | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
-| U3 | Progress while waiting (submit disabled, aria-live status) | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
-| U4 | Assistant message shown | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
-| U5 | Hotel cards show name, nightly price, currency, breakfast, explanation, plus fixture label | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
-| U6 | Select exactly one hotel → clear summary | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
+| U1 | Labelled message input + submit | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U1 ×3), recommendations.test.ts (U1 ×3) | Done |
+| U2 | Labelled scenario demo control | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U2 ×4) | Done |
+| U3 | Progress while waiting (submit disabled, aria-live status) | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U3 ×4) | Done |
+| U4 | Assistant message shown | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U4 ×2) | Done |
+| U5 | Hotel cards show name, nightly price, currency, breakfast, explanation, plus fixture label | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U5 ×6); owner browser review (T2-G3) | Done |
+| U6 | Select exactly one hotel → clear summary | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U6 ×4); owner browser review (T2-G3) | Done |
 | U7 | Empty-result state | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL | | Not started |
 | U8 | Recoverable failure: 503 or network error shows message + Retry that re-sends the last request | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL | | Not started |
 | U9 | Usable at 375px width | [T3](tasks/T3-web-states-accessibility.md) | Manual check, screenshot | | Not started |
 | U10 | Keyboard-only operation with visible focus | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL, manual check | | Not started |
-| U11 | Client-side empty-message guard | [T2](tasks/T2-web-core-journey.md) | Vitest + RTL | | Not started |
+| U11 | Client-side empty-message guard | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U11 ×6) | Done |
 
 ## Quality
 | ID | Requirement | Task | Verified by | Evidence | Status |
 |---|---|---|---|---|---|
-| Q1 | Component/state tests with Vitest + RTL | [T2](tasks/T2-web-core-journey.md) (journey), [T3](tasks/T3-web-states-accessibility.md) (states; closes) | Test suite | | Not started |
+| Q1 | Component/state tests with Vitest + RTL | [T2](tasks/completed/T2-web-core-journey.md) (journey), [T3](tasks/T3-web-states-accessibility.md) (states; closes) | Test suite | T2: 32 web tests pass ([T2-G3](gates/T2-G3.md)) | In progress (T2 journey done; closed by T3) |
 | Q2 | API validation + contract tests with pytest | [T1](tasks/completed/T1-api-recommendations.md) | Test suite | 45 passed, ruff clean ([T1-G3](gates/T1-G3.md)) | Done |
 | Q3 | e2e evidence of main journey | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q4 | e2e evidence of failure → retry recovery | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q5 | Manual keyboard + small-screen checks recorded | [T4](tasks/T4-evidence-documentation.md) | `docs/manual-checks.md` | | Not started |
 | Q6 | Mock boundaries documented | [T3](tasks/T3-web-states-accessibility.md) | Inspection of `APPROACH.md` notes | | Not started |
 | Q7 | Unverified items listed | [T4](tasks/T4-evidence-documentation.md) | Inspection of `APPROACH.md` | | Not started |
-| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/completed/T1-api-recommendations.md), [T2](tasks/T2-web-core-journey.md), [T3](tasks/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | T1: greps empty, review ([T1-review](reviews/T1-review.md)) | In progress (T1 done; closed by T4) |
+| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/completed/T1-api-recommendations.md), [T2](tasks/completed/T2-web-core-journey.md), [T3](tasks/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | T1: greps empty, review ([T1-review](reviews/T1-review.md)); T2: greps clean, review ([T2-review](reviews/T2-review.md)) | In progress (T1, T2 done; closed by T4) |
 
 ## Docs
 | ID | Requirement | Task | Verified by | Evidence | Status |
@@ -69,6 +69,6 @@ Every ID other than Q8 belongs to exactly one task, with one exception set by th
 | Task | Status | Doc |
 |---|---|---|
 | T1 | Done (closing) | [T1-api-recommendations](tasks/completed/T1-api-recommendations.md) |
-| T2 | Not started | [T2-web-core-journey](tasks/T2-web-core-journey.md) |
+| T2 | Done | [T2-web-core-journey](tasks/completed/T2-web-core-journey.md) |
 | T3 | Not started | [T3-web-states-accessibility](tasks/T3-web-states-accessibility.md) |
 | T4 | Not started | [T4-evidence-documentation](tasks/T4-evidence-documentation.md) |

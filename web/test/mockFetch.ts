@@ -40,6 +40,11 @@ export const EMPTY_BODY = {
   source: "fixture",
 };
 
+/** The `unavailable` example of the 503 response in openapi.yaml: a user-safe detail (DEC-4, U8). */
+export const ERROR_BODY = {
+  detail: "Recommendations are temporarily unavailable. Please try again.",
+};
+
 /**
  * Builds a JSON `Response` like the API sends.
  * @param status - HTTP status code.
@@ -62,6 +67,29 @@ export const mockFetchSuccess = (body: unknown = SUCCESS_BODY) =>
 /** Stubs fetch to resolve with a 200 and `EMPTY_BODY`. */
 export const mockFetchEmpty = () =>
   vi.stubGlobal("fetch", vi.fn().mockResolvedValue(jsonResponse(200, EMPTY_BODY)));
+
+/**
+ * Stubs fetch to resolve with a 503 and a `{detail}` body (U8).
+ * @param body - Response body; defaults to `ERROR_BODY`.
+ */
+export const mockFetch503 = (body: unknown = ERROR_BODY) =>
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(jsonResponse(503, body)));
+
+/**
+ * Builds the rejection `fetch` produces when the network fails and no response arrives (U8).
+ * @returns A fresh `TypeError("Failed to fetch")`.
+ */
+export const networkError = (): TypeError => new TypeError("Failed to fetch");
+
+/** Stubs fetch to reject as on a network failure (U8). */
+export const mockFetchNetworkError = () =>
+  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(networkError()));
+
+/**
+ * Returns a promise that never settles, for a request that stays pending (U3, U8 retry pending).
+ * @returns A `Promise<Response>` that neither resolves nor rejects.
+ */
+export const neverSettles = (): Promise<Response> => new Promise<Response>(() => {});
 
 /**
  * Stubs fetch with a promise that never settles until `resolve()` is called,

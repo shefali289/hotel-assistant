@@ -25,23 +25,23 @@ Links point to active task docs and are updated when a doc moves to `tasks/compl
 | U4 | Assistant message shown | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U4 ×2) | Done |
 | U5 | Hotel cards show name, nightly price, currency, breakfast, explanation, plus fixture label | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U5 ×6); owner browser review (T2-G3) | Done |
 | U6 | Select exactly one hotel → clear summary | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U6 ×4); owner browser review (T2-G3) | Done |
-| U7 | Empty-result state | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL | | Not started |
-| U8 | Recoverable failure: 503 or network error shows message + Retry that re-sends the last request | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL | | Not started |
-| U9 | Usable at 375px width | [T3](tasks/T3-web-states-accessibility.md) | Manual check, screenshot | | Not started |
-| U10 | Keyboard-only operation with visible focus | [T3](tasks/T3-web-states-accessibility.md) | Vitest + RTL, manual check | | Not started |
+| U7 | Empty-result state | [T3](tasks/completed/T3-web-states-accessibility.md) | states.test.tsx (U7 ×4); [T3-G3](gates/T3-G3.md); docs/evidence/T3-375-empty.png, T3-1280-empty.png | Done |
+| U8 | Recoverable failure: 503 or network error shows message + Retry that re-sends the last request | [T3](tasks/completed/T3-web-states-accessibility.md) | states.test.tsx (U8 ×14), recommendations.test.ts (U8 ×2); [T3-G3](gates/T3-G3.md); docs/evidence/T3-375-failure.png, T3-375-retry-pending.png, T3-1280-failure.png | Done |
+| U9 | Usable at 375px width | [T3](tasks/completed/T3-web-states-accessibility.md) | Manual check at G3 (no overflow in 15 states, Retry 48 px); docs/evidence/T3-375-*.png, T3-1280-*.png | Done |
+| U10 | Keyboard-only operation with visible focus | [T3](tasks/completed/T3-web-states-accessibility.md) | keyboard.test.tsx (U10 ×8); manual focus check; docs/evidence/T3-focus-*.png; deviation: no outline on script-focused sections (T2, T3 section 7) | Done |
 | U11 | Client-side empty-message guard | [T2](tasks/completed/T2-web-core-journey.md) | Vitest + RTL | page.test.tsx (U11 ×6) | Done |
 
 ## Quality
 | ID | Requirement | Task | Verified by | Evidence | Status |
 |---|---|---|---|---|---|
-| Q1 | Component/state tests with Vitest + RTL | [T2](tasks/completed/T2-web-core-journey.md) (journey), [T3](tasks/T3-web-states-accessibility.md) (states; closes) | Test suite | T2: 32 web tests pass ([T2-G3](gates/T2-G3.md)) | In progress (T2 journey done; closed by T3) |
+| Q1 | Component/state tests with Vitest + RTL | [T2](tasks/completed/T2-web-core-journey.md) (journey), [T3](tasks/completed/T3-web-states-accessibility.md) (states; closes) | Test suite | T2: 32 web tests ([T2-G3](gates/T2-G3.md)); T3: 60 web tests pass, fetch is the only mock ([T3-G3](gates/T3-G3.md)) | Done |
 | Q2 | API validation + contract tests with pytest | [T1](tasks/completed/T1-api-recommendations.md) | Test suite | 45 passed, ruff clean ([T1-G3](gates/T1-G3.md)) | Done |
 | Q3 | e2e evidence of main journey | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q4 | e2e evidence of failure → retry recovery | [T4](tasks/T4-evidence-documentation.md) | Playwright | | Not started |
 | Q5 | Manual keyboard + small-screen checks recorded | [T4](tasks/T4-evidence-documentation.md) | `docs/manual-checks.md` | | Not started |
-| Q6 | Mock boundaries documented | [T3](tasks/T3-web-states-accessibility.md) | Inspection of `APPROACH.md` notes | | Not started |
+| Q6 | Mock boundaries documented | [T3](tasks/completed/T3-web-states-accessibility.md) | `APPROACH.md` Mock boundaries section (web, api, e2e, gaps); [T3-review](reviews/T3-review.md) | Done |
 | Q7 | Unverified items listed | [T4](tasks/T4-evidence-documentation.md) | Inspection of `APPROACH.md` | | Not started |
-| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/completed/T1-api-recommendations.md), [T2](tasks/completed/T2-web-core-journey.md), [T3](tasks/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | T1: greps empty, review ([T1-review](reviews/T1-review.md)); T2: greps clean, review ([T2-review](reviews/T2-review.md)) | In progress (T1, T2 done; closed by T4) |
+| Q8 | Code meets the commenting standard (code-comments skill) | [T1](tasks/completed/T1-api-recommendations.md), [T2](tasks/completed/T2-web-core-journey.md), [T3](tasks/completed/T3-web-states-accessibility.md), [T4](tasks/T4-evidence-documentation.md) (closes) | gate-check greps, review | T1: greps empty, review ([T1-review](reviews/T1-review.md)); T2: greps clean, review ([T2-review](reviews/T2-review.md)); T3: greps clean, review ([T3-review](reviews/T3-review.md)) | In progress (T1, T2, T3 done; closed by T4) |
 
 ## Docs
 | ID | Requirement | Task | Verified by | Evidence | Status |
@@ -70,5 +70,5 @@ Every ID other than Q8 belongs to exactly one task, with one exception set by th
 |---|---|---|
 | T1 | Done (closing) | [T1-api-recommendations](tasks/completed/T1-api-recommendations.md) |
 | T2 | Done | [T2-web-core-journey](tasks/completed/T2-web-core-journey.md) |
-| T3 | Not started | [T3-web-states-accessibility](tasks/T3-web-states-accessibility.md) |
+| T3 | Done | [T3-web-states-accessibility](tasks/completed/T3-web-states-accessibility.md) |
 | T4 | Not started | [T4-evidence-documentation](tasks/T4-evidence-documentation.md) |

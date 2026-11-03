@@ -1,8 +1,14 @@
-// Unit tests for the POST /recommendations API client: base URL from env and response parsing (U1).
+// Unit tests for the POST /recommendations API client: base URL from env, response parsing (U1) and typed failures (U8).
 import { describe, expect, it, vi } from "vitest";
 
 import { fetchRecommendations } from "@/lib/recommendations";
-import { mockFetchSuccess, SUCCESS_BODY } from "@/test/mockFetch";
+import {
+  ERROR_BODY,
+  mockFetch503,
+  mockFetchNetworkError,
+  mockFetchSuccess,
+  SUCCESS_BODY,
+} from "@/test/mockFetch";
 
 const REQUEST = { message: "Wellington hotel", scenario: "success" } as const;
 
@@ -38,5 +44,24 @@ describe("fetchRecommendations", () => {
     const response = await fetchRecommendations(REQUEST);
 
     expect(response).toEqual(SUCCESS_BODY);
+  });
+
+  it("U8: fetchRecommendations rejects on a 503 response", async () => {
+    // Arrange: the API returns the openapi.yaml 503 example with a user-safe detail.
+    mockFetch503();
+
+    // U8 (section 8): the rejection is the typed error with kind "unavailable" and the API's detail.
+    await expect(fetchRecommendations(REQUEST)).rejects.toMatchObject({
+      kind: "unavailable",
+      detail: ERROR_BODY.detail,
+    });
+  });
+
+  it("U8: fetchRecommendations rejects when fetch fails with a network error", async () => {
+    // Arrange: fetch rejects with TypeError("Failed to fetch"), as browsers do when no response arrives.
+    mockFetchNetworkError();
+
+    // U8 (section 8): the rejection is the typed error with kind "network", not the raw TypeError.
+    await expect(fetchRecommendations(REQUEST)).rejects.toMatchObject({ kind: "network" });
   });
 });

@@ -9,8 +9,8 @@
 | reviewer | review | /task-review | code-comments, accessible-ui, gate-check | diff, task doc, requirements, openapi.yaml, rules, review-template | nothing | any edit | findings | planner (next task) or tester (accepted blockers) |
 
 ## Notes
-- Only the main session commits, merges, pushes, runs gates and archives task docs.
-- `docs/tasks/completed/` is read-only for everyone once the close commit is made.
+- Only the main session runs gates and archives task docs. Nobody commits during a task: at close the main session prints the commands and the owner runs them.
+- `docs/tasks/completed/` is read-only for everyone once a task doc is archived.
 - Subagents cannot talk to the owner: they return results and questions to the main session, which asks and waits.
 - Every agent except the reviewer also appends its results to the active task doc. The main session records the reviewer's results.
 - Test config for the tester includes dependency manifests and, on T2, the unmodified `create-next-app` scaffold.

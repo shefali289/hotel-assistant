@@ -1,5 +1,5 @@
 ---
-description: Start a task by running G0, creating its branch, planning it with the owner, running G1 and committing the plan.
+description: Start a task by running G0, creating its branch, planning it with the owner, and running G1. Nothing is committed until the task closes.
 argument-hint: <task ID, e.g. T1>
 ---
 
@@ -14,5 +14,5 @@ First read `.claude/flows/agent-handoff.md`, `.claude/flows/agents.md`, `docs/ta
 5. Frontend tasks: run the **ui-designer** agent.
 6. Ask the owner every clarification, UI and dependency question, and wait. Record the answers, choices and deviations in the task doc.
 7. Run G1 with the gate-check skill and save the report.
-8. Commit `docs(<scope>): plan <ID>`.
+8. Do not commit. The plan stays uncommitted on the branch until `/task-review` prints the close commands.
 9. Follow the handoff protocol. Next: **tester** via `/task-test`.

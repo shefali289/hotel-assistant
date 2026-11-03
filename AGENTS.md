@@ -93,7 +93,7 @@ docs/
 3. Gates: G0 to G5 run with the gate-check skill, reports go to `docs/gates/`, and nothing passes without every item passing or an owner waiver.
 4. Skills: web-testing, api-testing, accessible-ui, code-comments, gate-check; each agent lists the ones it uses.
 5. Comment standard: all code and tests follow the code-comments skill (Q8).
-6. Close: archive → close commit → push branch → merge `--no-ff` → checks on main → push main, only after the owner says yes.
+6. Close: nothing is committed during a task. `/task-review` archives, runs the pre-push check, then prints the commands; the owner runs test commit → feat commit → docs commit → push branch → merge `--no-ff` → checks on main → push main.
 
 ## Repo map
 | Path | Holds |

@@ -13,8 +13,9 @@
 ## (a) State machine
 ```
 G0 → plan (planner [+ ui-designer]) → G1 → test (tester) → G2 → implement (implementer) → G3
-   → review (reviewer) → G4 Part A [+ G5 on T4] → archive → close commit → pre-push check
-   → push branch → merge → checks on main → push main → G4 Part B → next task
+   → review (reviewer) → G4 Part A [+ G5 on T4] → archive → pre-push check → owner runs the close commands
+   (commits, push branch, merge, checks on main, push main) → G4 Part B → next task
+Nothing is committed until the close commands.
 ```
 Loops:
 - implement → test on a behaviour change
@@ -41,7 +42,7 @@ Recommended next agent:
 Agents run: <agent: one-line result, for each agent in this phase>
 Commands run: <each command → result, main session and agents, in order>
 Done: <1–3 bullets>   Tests: <passed> passed / <failed> failed
-Commit: <hash> <message>   Pushed: <branch/main or not yet>
+Uncommitted: <n> files, committed at task close   Pushed: <branch/main or not yet>
 Task doc: <path>   Open clarifications: <n or none>
 Next agent: <agent> (<phase>) via <command>: <what it will do>
 Continue handoff? yes / no / change something
@@ -49,7 +50,7 @@ Continue handoff? yes / no / change something
 ```
 
 ## (d) Protocol
-Update the task doc and `CURRENT_TASK.md`, print the block, then wait for the owner's answer. Use the question tool if available. Between the close commit and the main push, print the block but leave tracked files alone.
+Update the task doc and `CURRENT_TASK.md`, print the block, then wait for the owner's answer. Use the question tool if available. While the owner runs the close commands, print the block but leave tracked files alone.
 
 - **yes:** log the approval in the task doc's Handoff log and continue straight into the next command in this session.
 - **no:** stop. `CURRENT_TASK.md` shows the next command.

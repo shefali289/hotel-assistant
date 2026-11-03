@@ -67,7 +67,7 @@ git status --porcelain
 git fetch && git rev-parse main origin/main     # same hash
 git log --oneline -3
 ```
-Carry-over files: after a close, only `docs/tasks/CURRENT_TASK.md` and the previous `docs/gates/<prev>-G4.md` may show as modified, plus this task's own `docs/gates/<ID>-G0.md` on a rerun. They move to the new branch and go into the plan commit. Anything else fails the check.
+Carry-over files: after a close, only `docs/tasks/CURRENT_TASK.md` and the previous `docs/gates/<prev>-G4.md` may show as modified, plus this task's own `docs/gates/<ID>-G0.md` on a rerun. They move to the new branch and go into that task's close commits. Anything else fails the check.
 
 Inspect: previous task is in `docs/tasks/completed/` and in CURRENT_TASK's Completed tasks; this task's doc is in `docs/tasks/`.
 
@@ -75,34 +75,37 @@ Inspect: previous task is in `docs/tasks/completed/` and in CURRENT_TASK's Compl
 
 **G2 Red**
 ```
-git status --porcelain
-git diff --name-only main...HEAD
+git status --porcelain --untracked-files=all
+git diff --name-only main
 ```
 Run the test command and compare each failure with the "right reason" rule in the web-testing skill. Inspect: every planned automated test exists; names start with IDs; header comments present. Inspection and manual rows are not part of G2.
 
 Allowed changes: tests, test config, dependency manifests, unmodified `create-next-app` scaffold, docs. Anything hand-written under app code fails.
 
-The test commit follows straight after PASS. Record its hash in the handoff block.
+Nothing is committed until the task closes, so on PASS save a fingerprint of the test files for G3:
+```
+git ls-files -co --exclude-standard -- <test paths> | xargs sha256sum > docs/gates/<ID>-G2.sha256
+```
 
 **G3 Green**
 ```
-git log --oneline --grep='^test(' -1                 # gives <red-commit>
-git diff <red-commit> -- <test paths>                # empty unless approved
+sha256sum -c --quiet docs/gates/<ID>-G2.sha256      # silent: no test file changed
+git ls-files -co --exclude-standard -- <test paths> | xargs sha256sum | diff - docs/gates/<ID>-G2.sha256   # empty: none added or removed
 git diff main -- openapi.yaml                        # empty
 ```
 Then all checks, the comment standard and the secret scan. Ask the owner to confirm the frontend review at 375px and desktop.
 
 **G4 Part A**, before archiving: inspect the review, requirement register and task doc sections 7, 16 and 18.
 
-**Pre-push check** (`/task-review` step 3), after the close commit:
+**Pre-push check** (`/task-review` step 2), before printing the close commands:
 ```
-git status --porcelain                  # empty
-git ls-files | grep -E '(^|/)\.env(\.local)?$'     # empty
+git add -A -n | grep -E "(^|/|')\.env(\.local)?'?$"     # empty: no env file would be staged
 ```
-Then all checks and the branch-diff secret scan. Do not write the result to any tracked file yet; record it in Part B.
+Then all checks and the working-tree secret scan. Do not write the result to any tracked file yet; record it in Part B.
 
 **G4 Part B**, after main is pushed:
 ```
+git log --oneline main^1..main^2   # test, feat, docs commits in that order
 git log --oneline --merges -1
 git rev-parse main origin/main          # same hash
 ```

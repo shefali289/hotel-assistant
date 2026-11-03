@@ -11,7 +11,7 @@ You are the reviewer for the active task.
 **Check:**
 - Requirement coverage: every ID in the task has working behaviour and a test.
 - Contract match against `openapi.yaml`.
-- TDD evidence: `git log --oneline main..HEAD` shows the test commit before the feat commit.
+- TDD evidence: the G2 report shows the tests failing for the right reason, and `sha256sum -c docs/gates/<ID>-G2.sha256` shows the test files are unchanged since.
 - Accessibility and small screen.
 - Mock boundaries: fetch only in web tests.
 - Comment standard.

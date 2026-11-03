@@ -1,18 +1,18 @@
 # Current task
 
 - **Active task:** [T1-api-recommendations](T1-api-recommendations.md)
-- **Branch:** main (task branch not created yet)
-- **Phase:** plan
+- **Branch:** task/T1-api-recommendations
+- **Phase:** test (next)
 - **Current agent:** none
-- **Next agent:** planner
-- **Next command:** `/task-plan T1`
-- **Last action:** Harness set up, not yet committed
-- **Last gate:** none
+- **Next agent:** tester
+- **Next command:** `/task-test`
+- **Last action:** Plan written and approved; G1 passed; plan committed
+- **Last gate:** G1 PASS ([report](../gates/T1-G1.md))
 - **Last test command + result:** none
-- **Last commit:** none
-- **Last pushed commit:** none
-- **Next step:** Owner commits the contract, then the harness, and pushes main. Then run `/task-plan T1`.
+- **Last commit:** see `git log -1` on the task branch (`docs(api): plan T1`)
+- **Last pushed commit:** fd04384 (main)
+- **Next step:** Owner answers the handoff; on yes, the tester writes the 26 failing tests in section 10 of the task doc and runs G2.
 - **Open clarifications:** none
-- **Blockers:** G0 needs a clean tree and main in sync with origin/main
-- **Awaiting approval:** no
+- **Blockers:** none
+- **Awaiting approval:** yes (handoff to tester)
 - **Completed tasks:** none
